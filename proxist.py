@@ -109,8 +109,8 @@ def stripTime(time):
     """
     stime=time # Stripped time
 
-    stime=stime.replace(" hour","h")
     stime=stime.replace(" hours","h")
+    stime=stime.replace(" hour","h")
     stime=stime.replace(" and ","")
     stime=stime.replace(" minutes","m")
     stime=stime.replace(" minute","m")
@@ -140,12 +140,8 @@ def printProxy(proxies, pfile, saveall):
         hFile.write("\r\n"+header+"\r\n")
         hFile.write("-"*77+"\r\n")
             
-    #print("-"*77)
-    #print(header)
-    #print("-"*77)
     for proxy in proxies:
         entry="%-7s|%-15s|%-5s|%-18s|%-8s|%-9s|%-6s"%(proxy[0],proxy[1],proxy[2],proxy[3],proxy[4],proxy[5],str(proxy[6])+" sec")
-        #print(entry)
         if hFile:
             if saveall:
                 hFile.write(entry+"\r\n")
