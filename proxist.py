@@ -25,7 +25,6 @@ class Grabber(object):
             'entry':r'<tr class=".+?" rel="\d+?">(.+?)</tr>',
             'pages':r'<a href="/\d+?">(\d+?)</a>'}
         self.page = 1
-        self.proxy_index = 0
         self.html = self.NextPage()
         self.count = self.GetCount(self.html) # number of pages
         self.entries = self.ExtractEntries(self.html)
@@ -64,8 +63,8 @@ class Grabber(object):
         self.request = urllib2.Request(
             "http://proxylist.hidemyass.com/"+str(self.page),
             headers=self.headers)
-        json = urllib2.urlopen(self.request).read()
-        return self.Unescape(json)
+        page = urllib2.urlopen(self.request).read()
+        return self.Unescape(page)
     def Unescape(self, html):
         unescaped = html.replace(r'\"', '"')
         unescaped = unescaped.replace(r'\/', '/')
